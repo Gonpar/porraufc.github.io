@@ -161,14 +161,9 @@ function validateSelections() {
     return true;
 }
 
-// Validar formato de email
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email.toLowerCase());
-}
-
-// Guardar selecciones y enviar por email
-function saveSelections() {
+// Guardar selecciones y preparar el envío
+document.getElementById('ufcForm').addEventListener('submit', function (event) {
+    event.preventDefault();
     const userName = document.getElementById('userName').value.trim();
     const userEmail = document.getElementById('userEmail').value.trim();
 
@@ -177,48 +172,22 @@ function saveSelections() {
         return;
     }
 
-    if (!validateEmail(userEmail)) {
-        showToast('Por favor, ingresa un email válido', 'error');
-        return;
-    }
-
     if (!validateSelections()) {
         return;
     }
 
-    // Formatear las selecciones para el email
+    // Formatear las selecciones
     let selectionsText = '';
     fights.forEach(fight => {
         selectionsText += `${fight.title}: ${userSelections[fight.id]}\n`;
     });
 
-    const templateParams = {
-        from_name: userName,
-        from_email: userEmail,
-        predictions: selectionsText
-    };
+    // Poner las predicciones en el campo oculto
+    document.getElementById('predictions').value = selectionsText;
 
-    emailjs.send('TU_SERVICE_ID', 'TU_TEMPLATE_ID', templateParams)
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            showToast('¡Predicciones guardadas y enviadas con éxito!', 'success');
-            resetForm();
-        }, function(error) {
-            console.log('FAILED...', error);
-            showToast('Error al enviar las predicciones. Inténtalo de nuevo.', 'error');
-        });
-}
-
-// Resetear formulario después de enviar
-function resetForm() {
-    document.getElementById('userName').value = '';
-    document.getElementById('userEmail').value = '';
-    userSelections = {};
-    const fighters = document.querySelectorAll('.fighter');
-    fighters.forEach(fighter => {
-        fighter.classList.remove('selected');
-    });
-}
+    // Ahora enviará el formulario con las predicciones a Formspree
+    this.submit();
+});
 
 // Inicializar la aplicación
 document.addEventListener('DOMContentLoaded', () => {
