@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #dc0a0a;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+header h2, header h3 {
+    font-size: 1em;
+    margin-top: 5px;
+    color: #f0f0f0;
+}
+
+.user-info {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-info input {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.fights-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.fight-card {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.fight-card h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #dc0a0a;
+}
+
+.fighters {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.fighter {
+    width: 45%;
+    cursor: pointer;
+    transition: transform 0.3s, border 0.3s;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.fighter:hover {
+    transform: scale(1.05);
+}
+
+.fighter.selected {
+    border: 3px solid #dc0a0a;
+    border-radius: 8px;
+}
+
+.fighter img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.fighter h3 {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+.fighter p {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.save-button {
+    background-color: #dc0a0a;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    transition: background-color 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.save-button:hover {
+    background-color: #b30000;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 4px;
+    display: none;
+    animation: slideInRight 0.3s ease;
+}
+
+.toast.success { border-left: 4px solid #4CAF50; }
+.toast.error { border-left: 4px solid #dc0a0a; }
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+    .fights-container {
+        grid-template-columns: 1fr;
+    }
+    .fighter {
+        width: 100%;
+    }
+    .user-info input {
+        width: 90%;
+    }
+    .save-button {
+        width: 90%;
+    }
+}

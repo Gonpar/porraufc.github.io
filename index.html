@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porra UFC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>🥊 Porra UFC 308 🥊</h1>
+        <h2>Sáb, Oct 26 / 8:00 PM GMT+2</h2>
+        <h3>Order on UFC Fight Pass</h3>
+    </header>
+
+    <div class="container">
+        <div class="user-info">
+            <input type="text" id="userName" placeholder="Tu nombre">
+            <input type="email" id="userEmail" placeholder="Tu email">
+        </div>
+
+        <div class="fights-container" id="fightsContainer">
+            <!-- Los combates se generarán dinámicamente -->
+        </div>
+
+        <button class="save-button" onclick="saveSelections()">Guardar Predicciones</button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("TU_USER_ID"); // Reemplaza "TU_USER_ID" con tu User ID de EmailJS
+        })();
+    </script>
+
+    <!-- JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>
