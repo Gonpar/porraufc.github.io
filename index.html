@@ -14,28 +14,24 @@
     </header>
 
     <div class="container">
-        <div class="user-info">
-            <input type="text" id="userName" placeholder="Tu nombre">
-            <input type="email" id="userEmail" placeholder="Tu email">
-        </div>
+        <form id="ufcForm" action="https://formspree.io/f/mldedowl" method="POST">
+            <div class="user-info">
+                <input type="text" name="name" id="userName" placeholder="Tu nombre" required>
+                <input type="email" name="email" id="userEmail" placeholder="Tu email" required>
+            </div>
 
-        <div class="fights-container" id="fightsContainer">
-            <!-- Los combates se generarán dinámicamente -->
-        </div>
+            <div class="fights-container" id="fightsContainer">
+                <!-- Los combates se generarán dinámicamente -->
+            </div>
 
-        <button class="save-button" onclick="saveSelections()">Guardar Predicciones</button>
+            <textarea name="predictions" id="predictions" style="display:none;"></textarea>
+            
+            <button class="save-button" type="submit">Guardar Predicciones</button>
+        </form>
     </div>
 
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
-
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("TU_USER_ID"); // Reemplaza "TU_USER_ID" con tu User ID de EmailJS
-        })();
-    </script>
 
     <!-- JavaScript -->
     <script src="scripts.js"></script>
